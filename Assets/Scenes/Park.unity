@@ -163,6 +163,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
       propertyPath: spacing.m_Curve.Array.data[0].inSlope
       value: 1
       objectReference: {fileID: 0}
@@ -1643,6 +1653,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
       propertyPath: DirRecord.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -1873,6 +1893,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
       propertyPath: DirRecord.Array.size
@@ -2702,6 +2732,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
       propertyPath: DirRecord.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -2824,6 +2864,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
       propertyPath: spacing.m_Curve.Array.data[0].inSlope
@@ -2957,6 +3007,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 206387034}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &879388990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114660900112705710, guid: ef68a31893094cd409b91b9370c8b3ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1816008695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c447c826f9e33e4cae491a076e68aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &936146409
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3129,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
       propertyPath: DirRecord.Array.size
@@ -4724,6 +4796,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
       propertyPath: spacing.m_Curve.Array.data[0].inSlope
       value: 1
       objectReference: {fileID: 0}
@@ -4895,6 +4977,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
       propertyPath: spacing.m_Curve.Array.data[0].inSlope
       value: 1
       objectReference: {fileID: 0}
@@ -5012,6 +5104,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
       propertyPath: spacing.m_Curve.Array.data[0].inSlope
@@ -12302,6 +12404,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2126438529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114862128088836710, guid: afae94a5074a6494385e073d1bd1d24c,
+    type: 3}
+  m_PrefabInstance: {fileID: 940672093}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07653eb6e12983b4699cb2b03ddc2e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &417913202534326539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12443,6 +12557,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: uiStepCounter
+      value: 
+      objectReference: {fileID: 2126438529}
+    - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
+        type: 3}
+      propertyPath: consoleStepCounter
+      value: 
+      objectReference: {fileID: 879388990}
     - target: {fileID: 8051369383683820710, guid: af07a1ee10ccc834a9f9300876f0dd1d,
         type: 3}
       propertyPath: DirRecord.Array.size
