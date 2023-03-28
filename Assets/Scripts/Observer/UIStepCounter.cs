@@ -22,12 +22,21 @@ public class UIStepCounter : MonoBehaviour, Observer {
 
     void Start()
     {
+        GridMovement subject = FindObjectOfType<GridMovement>();
+        if (subject != null)
+        {
+            subject.add(this);
+        }
 
     }
 
     void OnDestroy()
     {
-
+        GridMovement subject = FindObjectOfType<GridMovement>();
+        if (subject != null)
+        {
+            subject.RemoveObserver(this);
+        }
     }
 
     public void SubjectUpdate(object sender)

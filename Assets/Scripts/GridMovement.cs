@@ -10,24 +10,44 @@ public class GridMovement : MonoBehaviour //receiver
     [SerializeField] private float moveTime = 0.3f;
     [SerializeField] private AnimationCurve spacing;
 
+    [SerializeField] private ConsoleStepCounter consoleStepCounter;
+    [SerializeField] private UIStepCounter uiStepCounter;
+
+    private List<Observer> observers = new List<Observer>();
     //The script will not accept new move orders before previous is finished.
     private bool isMoving;
     private Animator animator;
     private MapInfo map;
+    private int stepsTaken = 0;
 
+    private Subject subject;
 
     void Start()
     {
+        subject = new Subject(this);
+        subject.AddObserver(consoleStepCounter);
+        subject.AddObserver(uiStepCounter);
+
         animator = GetComponent<Animator>();
         animator.SetFloat("y", -1);
         map = FindObjectOfType<MapInfo>();
+    }
+
+    public void add(Observer observer) 
+    {
+        this.observers.Add(observer);
+    }
+
+    public void RemoveObserver(Observer observer) 
+    {
+        this.observers.Remove(observer);
     }
 
     private void Update()
     {
         if (isMoving)
         {
-
+            //print(stepsTaken);
         }
     }
 
@@ -87,8 +107,11 @@ public class GridMovement : MonoBehaviour //receiver
         {
             agregate += Time.deltaTime / duration;
             transform.position = Vector3.Lerp(from, to, spacing.Evaluate(agregate));
+
             yield return null;
         }
+        stepsTaken++;
+        subject.Notify();
 
         isMoving = false;
         animator.SetFloat("speed", 0f);
@@ -105,5 +128,11 @@ public class GridMovement : MonoBehaviour //receiver
         MoveCommand moveCommand = new MoveCommand(KeyCode.None, "Move", position - nextTail.transform.position);
         moveCommand.Execute(nextTail);
         nextTail.transform.position = position;
+    }
+
+    private void OnDestroy()
+    {
+        subject.RemoveObserver(consoleStepCounter);
+        subject.RemoveObserver(uiStepCounter);
     }
 }
