@@ -10,10 +10,6 @@ public class Subject {
         this.sender = sender;
     }
 
-    void Awake() 
-    {
-        OnWalk = new Subject(this);
-    }
 
     public void AddObserver(Observer observer)
     {
@@ -25,11 +21,11 @@ public class Subject {
         observers.Remove(observer);
     }
 
-    public void Notify()
+    public void Notify(object delivery)
     {
         foreach (Observer observer in observers)
         {
-            observer.SubjectUpdate(sender);
+            observer.SubjectUpdate(delivery);
 
         }
     }

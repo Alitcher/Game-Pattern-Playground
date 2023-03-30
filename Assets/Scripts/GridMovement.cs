@@ -111,7 +111,7 @@ public class GridMovement : MonoBehaviour //receiver
             yield return null;
         }
         stepsTaken++;
-        subject.Notify();
+        subject.Notify(this);
 
         isMoving = false;
         animator.SetFloat("speed", 0f);
