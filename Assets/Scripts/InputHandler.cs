@@ -20,13 +20,10 @@ public class InputHandler : MonoBehaviour
     public Stack<Command> cmdHistory = new Stack<Command>();
 
     [SerializeField]
-    private List<RecordedCommand> macro = new List<RecordedCommand>();
-
-    [SerializeField]
     private Command SwitchCharCommand;
 
-    [SerializeField]
-    private InputRecorder inputRecorder;
+    //[SerializeField]
+    //private InputRecorder inputRecorder;
 
     // Use this for initialization
     void Awake()
@@ -69,13 +66,13 @@ public class InputHandler : MonoBehaviour
             {
                 cmdHistory.Push(cmd);
             }
-            inputRecorder.Add(cmd);
+            //inputRecorder.Add(cmd);
         }
 
         //TODO: Move all record and play related to InputRecorder
         foreach (var cmd in Keymap)
         {
-            inputRecorder.Add(cmd);
+            //inputRecorder.Add(cmd);
 
             if (Input.GetKey(cmd.Key))
             {
@@ -96,6 +93,7 @@ public class InputHandler : MonoBehaviour
             cmdHistory.Push(SwitchCharCommand);
             SwitchCharCommand.Execute(this);
         }
+        //inputRecorder.Update();
     }
 
     public GridMovement GetCurrent() 
@@ -109,6 +107,15 @@ public class InputHandler : MonoBehaviour
 
         var cmd = cmdHistory.Pop();
         cmd.Undo();
+    }
+
+    public void Add(Command cmd)
+    {
+        if (!(cmd is RecorderInputCommand))
+        {
+            cmdHistory.Push(cmd);
+        }
+        cmd.Execute(currentActor);
     }
 
     private int currentChar = 0;
