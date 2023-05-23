@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class RecorderIdleState : RecorderState
-{
-    public override void Play()
-    {
-        base.Play();
-    }
+//public class RecorderIdleState : RecorderState
+//{
+//    public override void Play()
+//    {
+//        base.Play();
+//    }
 
-    public override void Record()
-    {
-        base.Record();
-    }
-}
+//    public override void Record()
+//    {
+//        base.Record();
+//    }
+//}

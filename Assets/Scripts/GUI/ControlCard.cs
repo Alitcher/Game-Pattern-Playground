@@ -27,8 +27,8 @@ public class ControlCard : MonoBehaviour
 
     public void Refresh()
     {
-        description.text = MyCommand.Description;
-        key.text = MyCommand.Key.ToString();
+        //description.text = MyCommand.;
+        //key.text = MyCommand.Key.ToString();
     }
 
 }

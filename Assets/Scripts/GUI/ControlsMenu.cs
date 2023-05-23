@@ -24,11 +24,11 @@ public class ControlsMenu : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        foreach (Command command in inputHandler.Keymap)
-        {
-            ControlCard card = Instantiate(controlCardPrefab, scrollContent.transform);
-            card.Populate(command, rebindMenu);
-        }
+        //foreach (Command command in inputHandler.Keymap)
+        //{
+        //    ControlCard card = Instantiate(controlCardPrefab, scrollContent.transform);
+        //    card.Populate(command, rebindMenu);
+        //}
         Close();
     }
 

@@ -1,131 +1,124 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
+using System.Text;
+using System;
+
+/// <summary>
+/// This class reads keyboard through the unity Events normally associated with the now deprecated
+/// old Unity OnGUI method for drawing GUI. May cause abnormal behavior if used together
+/// with the pre 4.3 GUI system, due to consuming the input events.
+/// </summary>
+
 public class InputHandler : MonoBehaviour
 {
 
-    //SerializeField let's us assign a value in the Unity editor for private variables.
     [SerializeField]
-    //The character currently being commanded
-    private GridMovement currentActor;
-
-    [SerializeField]
-    //A list of all characters in the scene
-    private List<GridMovement> allActors;
-
-    //Variables for binding commands to input and executing commands
-    public List<Command> Keymap = new List<Command>();  //keycode to command mapping
-
-    public Stack<Command> cmdHistory = new Stack<Command>();
-
-    [SerializeField]
-    private List<RecordedCommand> macro = new List<RecordedCommand>();
-
-    [SerializeField]
-    private Command SwitchCharCommand;
-
-    [SerializeField]
-    private InputRecorder inputRecorder;
+    private TileBasedMovement actor;
+    private Event currentEvent;
+    private KeyCode currentKey;
+    private readonly List<KeyCode> keysDown = new List<KeyCode>();
+    private readonly Dictionary<KeyCode, Command> keymap = new Dictionary<KeyCode, Command>();
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
-        //allActors = FindObjectsOfType<GridMovement>().ToList();
-        Keymap.Add(new MoveCommand(KeyCode.W, "move up", Vector3.up));
-        Keymap.Add(new MoveCommand(KeyCode.S, "move down", Vector3.down));
-        Keymap.Add(new MoveCommand(KeyCode.A, "move left", Vector3.left));
-        Keymap.Add(new MoveCommand(KeyCode.D, "move right", Vector3.right));
+        keymap.Add(KeyCode.W, new MoveCommand(Vector3.forward));
+        keymap.Add(KeyCode.A, new MoveCommand(Vector3.left));
+        keymap.Add(KeyCode.S, new MoveCommand(Vector3.back));
+        keymap.Add(KeyCode.D, new MoveCommand(Vector3.right));
+    } 
 
-        Keymap.Add(new UndoCommand(KeyCode.LeftControl, "Undo", this));
-
-        //Keymap.Add(new PlayCommand(KeyCode.P, this));
-        Keymap.Add(new RecordCommand(KeyCode.R));
-
-        CheckCurrentChar();
-        SwitchCharCommand = new SwitchCommand();
-    }
-
-    private void CheckCurrentChar()
-    {
-        for (int i = 0; i < allActors.Count; i++)
-        {
-            if (currentActor == allActors[i])
-            {
-                currentChar = i;
-                return;
-            }
-        }
-    }
-
+    // Update is called once per frame
     void Update()
     {
-        //TODO: Uncomment
-        foreach (var cmd in Keymap.Where(cmd => Input.GetKeyDown(cmd.Key)))
-        {
-            cmd.Execute(currentActor);
+        //Get the keycode of key pressed this frame, return if no key is pressed
+        PopEvent();
+        currentKey = ReadKeyDown();
 
-            if (!(cmd is UndoCommand))
-            {
-                cmdHistory.Push(cmd);
-            }
-            inputRecorder.Add(cmd);
+        if(keymap.ContainsKey(currentKey))
+        {
+            keymap[currentKey].Execute(actor);
         }
 
-        //TODO: Move all record and play related to InputRecorder
-        foreach (var cmd in Keymap)
-        {
-            inputRecorder.Add(cmd);
-
-            if (Input.GetKey(cmd.Key))
-            {
-                if (!(cmd is UndoCommand))
-                {
-                    cmdHistory.Push(cmd);
-                    cmd.Execute(currentActor);
-                }
-                else
-                {
-                    cmd.Execute(this);
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            cmdHistory.Push(SwitchCharCommand);
-            SwitchCharCommand.Execute(this);
-        }
     }
 
-    public GridMovement GetCurrent() 
+    #region Helper code for the exercises
+
+    /// <summary>
+    /// Pop the OnGUI input event and create local reference for it
+    /// </summary>
+    protected void PopEvent()
     {
-        return currentActor;
+        currentEvent = new Event();
+        Event.PopEvent(currentEvent);
     }
-
-    public void Undo()
+    /// <summary>
+    /// Returns the keycode of a keyboard button down event
+    /// </summary>
+    /// <returns></returns>
+    protected KeyCode ReadKeyDown()
     {
-        if (cmdHistory.Count == 0) return;
-
-        var cmd = cmdHistory.Pop();
-        cmd.Undo();
+        if (currentEvent.type == EventType.KeyDown && !keysDown.Contains(currentEvent.keyCode))
+        {
+            keysDown.Add(currentEvent.keyCode);
+            return currentEvent.keyCode;
+        }
+        else if (currentEvent.type == EventType.KeyUp)
+        {
+            keysDown.Remove(currentEvent.keyCode);
+        }
+        return KeyCode.None;
     }
-
-    private int currentChar = 0;
-    public void SwitchCharacter(int adder)
+    /// <summary>
+    /// Returns the keycode of last held keyboard button
+    /// </summary>
+    protected KeyCode ReadKey()
     {
-        currentChar += adder;
-        if (currentChar >= allActors.Count)
-        {
-            currentChar = 0;
-        }
-        else if (currentChar < 0)
-        {
-            currentChar = allActors.Count - 1;
-        }
-        print(currentChar);
-        currentActor = allActors[currentChar];
-        Camera.main.GetComponentInParent<CameraMovement>().SetTarget(currentActor.gameObject.transform);
+        return currentEvent.keyCode;
     }
+
+    /// <summary>
+    /// Enters rebind state and tries to rebind Command to next currentKey that is not KeyCode.None
+    /// </summary>
+    /// <param name="cmd"></param>
+    /// <returns></returns>
+    IEnumerator EnterRebindState(Command cmd)
+    {
+        Debug.Log("Started rebind coroutine");
+        while (currentKey == KeyCode.None)
+        {
+            yield return null;
+        }
+        Debug.Log("Rebinding");
+        RebindCommand(cmd);
+    }
+
+
+    /// <summary>
+    /// <para>Binds a new KeyCode to a Command, if the KeyCode is unique.</para>
+    /// <para>To rebind call EnterRebindState instead:</para>
+    /// <para>StartCoroutine(EnterRebindState(new MoveCommand(Vector3.forward)));</para>
+    /// </summary>
+    /// <param name="command"></param>
+    /// <returns></returns>
+    private bool RebindCommand(Command command)
+    {
+        if (keymap.ContainsKey(currentKey))
+            return false;
+
+        //Remove old instance of the command
+        Debug.Log(keymap.Count);
+        var pair = keymap.FirstOrDefault(kvp => kvp.Value.Equals(command));
+        keymap.Remove(pair.Key);
+
+        keymap.Add(currentKey, command);
+        Debug.Log("Command bound to " + currentKey);
+        return true;
+    }
+
+    
+    #endregion
 }
 

@@ -102,8 +102,8 @@ public class GridMovement : MonoBehaviour //receiver
         }
 
         //execute it on the corresponding next part of the character
-        MoveCommand moveCommand = new MoveCommand(KeyCode.None, "Move", position - nextTail.transform.position);
-        moveCommand.Execute(nextTail);
+        //MoveCommand moveCommand = new MoveCommand(KeyCode.None, "Move", position - nextTail.transform.position);
+       //moveCommand.Execute(nextTail);
         nextTail.transform.position = position;
     }
 }

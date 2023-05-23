@@ -14,7 +14,7 @@ public class RebindMenu : MonoBehaviour
     {
         controlCard = keybindCard;
         instruction.text = $"Enter new key for\n" +
-                           $"{controlCard.MyCommand.Description}";
+                           $"{controlCard.MyCommand}";
         gameObject.SetActive(true);
     }
 
@@ -29,7 +29,7 @@ public class RebindMenu : MonoBehaviour
         if(!(Event.current.isKey && Input.anyKeyDown))
             return;
         
-        controlCard.MyCommand.Key = Event.current.keyCode;
+        //controlCard.MyCommand.Key = Event.current.keyCode;
         controlCard.Refresh();
         Close();
     }
